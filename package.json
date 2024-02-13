@@ -1,0 +1,35 @@
+{
+  "name": "com.wayheart.simplesavemaster",
+  "version": "0.0.1",
+  "displayName": "Simple Save Master",
+  "description": "Lightweight storage system",
+  "unity": "2021.3",
+  "keywords": [
+    "Save",
+    "Storage",
+    "System",
+    "WayHeart"
+  ],
+  "author": {
+    "url": "https://github.com/wayheart",
+    "name": "Vladyslav Yeromenko",
+    "email": "wayheart.entertainment@gmail.com"
+  },
+  "dependencies": {
+    "com.unity.textmeshpro": "^3.0.6",
+    "com.unity.nuget.newtonsoft-json": "^3.0.1",
+  },
+  "files": [
+    "Documentation/**",
+    "Documentation.meta",
+    "Runtime/**",
+    "Runtime.meta",
+    "CHANGELOG.md",
+    "CHANGELOG.md.meta",
+    "LICENSE.md",
+    "LICENSE.md.meta",
+    "README.md",
+    "README.md.meta",
+    "package.json.meta"
+  ]
+}
