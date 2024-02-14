@@ -13,6 +13,12 @@ namespace Simple.Save.Master.Runtime
         /// <param name="saveData">Data to save</param>
         public static void Save<T>(T saveData)
         {
+            if (saveData == null)
+            {
+                Debug.LogError($"SaveMaster ERROR: This is type {typeof(T).Name} == null");
+                return;
+            }
+            
             string filePath = GetFilePath(typeof(T).Name);
 
             string jsonDataString = JsonConvert.SerializeObject(saveData, Formatting.Indented);
@@ -56,7 +62,6 @@ namespace Simple.Save.Master.Runtime
         /// <returns>File path</returns>
         private static string GetFilePath(string key)
         {
-            Debug.Log(Path.Combine(Application.persistentDataPath, key + ".json"));
             return Path.Combine(Application.persistentDataPath, key + ".json");
         }
     }
