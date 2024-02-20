@@ -10,11 +10,16 @@ namespace SimpleSaveMaster
         /// A method to save data to a file
         /// </summary>
         /// <typeparam name="T">Data type to save</typeparam>
-        /// <param name="key">Key to identify the file (nameof)</param>
         /// <param name="saveData">Data to save</param>
-        public static void Save<T>(string key, T saveData)
+        public static void Save<T>(T saveData)
         {
-            string filePath = GetFilePath(key);
+            if (saveData == null)
+            {
+                Debug.LogError($"SaveMaster ERROR: This is type {typeof(T).Name} == null");
+                return;
+            }
+            
+            string filePath = GetFilePath(typeof(T).Name);
 
             string jsonDataString = JsonConvert.SerializeObject(saveData, Formatting.Indented);
 
@@ -25,13 +30,12 @@ namespace SimpleSaveMaster
         /// A method to load data from a file, if not, then returns a new instance
         /// </summary>
         /// <typeparam name="T">Data type to load</typeparam>
-        /// <param name="key">Key to identify the file (nameof)</param>
         /// <returns>Loaded data of type T</returns>
-        public static T Load<T>(string key) where T : new()
+        public static T Load<T>() where T : new()
         {
-            string filePath = GetFilePath(key);
+            string filePath = GetFilePath(typeof(T).Name);
 
-            if (!File.Exists(filePath))
+            if (!Exists<T>())
             {
                 return new T();
             }
@@ -44,11 +48,11 @@ namespace SimpleSaveMaster
         /// <summary>
         /// A method checks if this file exists or not
         /// </summary>
-        /// <param name="key">Key to identify the file(nameof)</param>
+        /// <param T="T">Key to identify the file(typeof)</param>
         /// <returns>File exists or not</returns>
-        public static bool Exists(string key)
+        public static bool Exists<T>()
         {
-            return File.Exists(GetFilePath(key));
+            return File.Exists(GetFilePath(typeof(T).Name));
         }
 
         /// <summary>
