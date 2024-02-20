@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using System.IO;
 using UnityEngine;
 
-namespace Simple.Save.Master.Runtime
+namespace SimpleSaveMaster
 {
     public static class SaveMaster
     {
